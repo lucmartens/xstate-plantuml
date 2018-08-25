@@ -1,7 +1,14 @@
 {
   "name": "xstate-plantuml",
   "version": "0.1.0",
+  "description":
+    "Convert a xstate or react-automata statechart to a plantuml state diagram",
+  "main": "src/index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucmartens/composables.git"
+  },
   "scripts": {
     "test": "yarn jest"
   },

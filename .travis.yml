@@ -2,3 +2,12 @@ language: node_js
 node_js:
   - "8"
 cache: yarn
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: lucmartens92@gmail.com
+  api_key:
+    secure: bSt/4tDvd0shmGeRTk4sUl8FPaUnINX/iQQ/nlKUgY2jF+PLYlJ2MNxnViI1ZH4HU65MZSJWfIavJ2Mk5TPQSc/LoIVplbTI/fZ3z+4b4b3swDvrk2aC8rJtKL8eQFzkoe5szpLulne2vaKDCHpcR1i6gIhdZNHOTtXFoKFo7FykCj6YH0nTh+2+oDf6ITj1Ofrhh1ntm3YDrO+K/FE9ejtKdTY23IEpx48p43FZmzLh7oITHU+uA0nPo4lsdjYfgdQNyW+mYmqfg2e8BcPf0hVPKxeg3n9IsMrz3TXvnq2jhnAlyxdEC6VnL7ReAJT8u3V7g/yjEi6tmg0sLCtjvWyeuQ4inidtAJx1aEqXyOpKR6SuQrafzRXNwUvj8OkWRIYwP25/vhuzTiWYMI8wEd29390J3bovbd9HMmkyBSI4FPm/lHCFWmAfWTAq0U2FYBrzALYDkD9O9oW3G91uBbc6/T7zYtoaZ58+FV4MCWKRYcppEtMgYTvk02hl98Tyyqzlh3Fcx0Zt8kxw5kaTyeU9AMj+SdCysfWhPpvOEN//Y3KgvZZFUTVTzpVwEdotuciEyfcykVwN0bpHk5IM1DsjYkN4Iildvy+PDheKMYECpI00o1qMb/S8TuniMIEDK5LKhVEUHa1FTiIBWVlSSNElUVdJeTTu+UFYX04eOPE=
+  on:
+    repo: lucmartens/xstate-plantuml
+    tags: true
