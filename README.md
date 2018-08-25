@@ -1,3 +1,37 @@
+# xstate-plantuml
+
+Convert a [xstate](https://github.com/davidkpiano/xstate) or [react-automata](https://github.com/MicheleBertoli/react-automata) statechart to a [plantuml](http://plantuml.com/state-diagram) state diagram
+
+## Usage
+
+```js
+import convert from 'xstate-plantuml';
+
+const config = {
+  key: 'light',
+  initial: 'green',
+  states: {
+    green: {
+      on: {
+        TIMER: 'yellow'
+      }
+    },
+    yellow: {
+      on: {
+        TIMER: 'red'
+      }
+    },
+    red: {
+      on: {
+        TIMER: 'green'
+      }
+    }
+  }
+};
+
+console.log(convert(config));
+```
+
 ## Supports
 
 - [x] Single machine
