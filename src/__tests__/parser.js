@@ -55,7 +55,7 @@ describe('parse events', () => {
   test('internal', () => {
     const config = {
       states: { x: {}, y: {} },
-      on: { EV1: 'x', EV2: 'y' }
+      on: { EV1: 'x', EV2: { target: 'y', internal: true } }
     };
 
     expect(parser.events('pre', config)).toEqual([
@@ -66,7 +66,7 @@ describe('parse events', () => {
     ]);
   });
 
-  test.only('complex', () => {
+  test('complex', () => {
     const config = {
       initial: 'x',
       states: { x: { on: { EV3: 'y' } }, y: {} },

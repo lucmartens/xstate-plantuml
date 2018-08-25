@@ -21,8 +21,13 @@ const events = (prefix, config) => {
       return ['event', [`${prefix}_${from}`, `${prefix}_${name}`, ev]];
     }
 
-    if (_.isObject(target)) {
+    if (_.isObject(target) && !target.internal) {
       const name = _.keys(target)[0];
+      return ['event', [`${prefix}_${from}`, `${prefix}_${name}`, ev]];
+    }
+
+    if (_.isObject(target) && !!target.internal) {
+      const name = target.target;
       return ['event', [`${prefix}_${from}`, `${prefix}_${name}`, ev]];
     }
   };
