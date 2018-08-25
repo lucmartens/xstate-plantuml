@@ -1,7 +1,10 @@
 {
   "name": "xstate-plantuml",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "license": "MIT",
+  "scripts": {
+    "test": "yarn jest"
+  },
   "dependencies": {
     "lodash": "^4.17.10"
   },
