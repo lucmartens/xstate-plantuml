@@ -1,0 +1,11 @@
+{
+  "name": "xstate-plantuml",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.10"
+  },
+  "devDependencies": {
+    "jest": "^23.5.0"
+  }
+}
