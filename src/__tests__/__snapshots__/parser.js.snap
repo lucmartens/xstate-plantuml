@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parser parallel machine 1`] = `
+Array [
+  "root",
+  Object {},
+  Array [
+    "machine",
+    Object {
+      "key": "light",
+    },
+    Array [
+      "state",
+      Array [
+        "on",
+        "light_on",
+      ],
+    ],
+    Array [
+      "state",
+      Array [
+        "off",
+        "light_off",
+      ],
+    ],
+    Array [
+      "event",
+      Array [
+        "light_on",
+        "light_off",
+        "TOGGLE",
+      ],
+    ],
+    Array [
+      "event",
+      Array [
+        "light_off",
+        "light_on",
+        "TOGGLE",
+      ],
+    ],
+  ],
+]
+`;
+
+exports[`parser simple machine 1`] = `
+Array [
+  "root",
+  Object {},
+  Array [
+    "machine",
+    Object {
+      "key": "users-crud",
+    },
+    Array [
+      "state",
+      Array [
+        "on",
+        "users-crud_on",
+      ],
+    ],
+    Array [
+      "state",
+      Array [
+        "off",
+        "users-crud_off",
+      ],
+    ],
+    Array [
+      "event",
+      Array [
+        "users-crud_on",
+        "users-crud_off",
+        "TOGGLE",
+      ],
+    ],
+    Array [
+      "event",
+      Array [
+        "users-crud_off",
+        "users-crud_on",
+        "TOGGLE",
+      ],
+    ],
+  ],
+]
+`;
