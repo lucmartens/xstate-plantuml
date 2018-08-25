@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`parser parallel machine 1`] = `
+exports[`root parallel machine 1`] = `
 Array [
   "root",
   Object {},
@@ -26,6 +26,13 @@ Array [
     Array [
       "event",
       Array [
+        "[*]",
+        "light_on",
+      ],
+    ],
+    Array [
+      "event",
+      Array [
         "light_on",
         "light_off",
         "TOGGLE",
@@ -43,7 +50,7 @@ Array [
 ]
 `;
 
-exports[`parser simple machine 1`] = `
+exports[`root simple machine 1`] = `
 Array [
   "root",
   Object {},
@@ -64,6 +71,13 @@ Array [
       Array [
         "off",
         "users-crud_off",
+      ],
+    ],
+    Array [
+      "event",
+      Array [
+        "[*]",
+        "users-crud_on",
       ],
     ],
     Array [
