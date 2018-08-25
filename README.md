@@ -3,6 +3,7 @@
 - [x] Single machine
 - [x] Parallel machine
 - [x] Hierarchical machine
+- [ ] History machine
 - [x] Initial event
 - [x] Internal string events `{on: {x: '.y'}}`
 - [x] Internal obj events `{on {x: {target: 'y'}}}`
