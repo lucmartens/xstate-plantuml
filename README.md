@@ -3,11 +3,11 @@
 - [x] Single machine
 - [x] Parallel machine
 - [ ] Hierarchical machine
-- [ ] Initial event
-- [ ] internal events
+- [x] Initial event
+- [ ] Internal events
 - [x] String event `{on: {x: 'y'}}`
-- [ ] Object event `{on: {x: {y: {}}}}`
-- [ ] Array event `{on: {x: [{target: 'y'}]}}`
+- [x] Object event `{on: {x: {y: {}}}}`
+- [x] Array event `{on: {x: [{target: 'y'}]}}`
 - [ ] String action `fetch`
 - [ ] Object action `{ type: 'fetch'}`
 - [ ] Function action
