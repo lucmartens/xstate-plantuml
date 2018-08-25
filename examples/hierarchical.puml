@@ -1,0 +1,18 @@
+@startuml
+    state "light" as light {
+        state "green" as light_green
+        state "yellow" as light_yellow
+        [*] --> light_green 
+        light_green --> light_yellow : TIMER
+        light_yellow --> light_red : TIMER
+        light_red --> light_green : TIMER
+        state "red" as light_red {
+            state "walk" as red_walk
+            state "wait" as red_wait
+            state "stop" as red_stop
+            [*] --> red_walk 
+            red_walk --> red_wait : PED_TIMER
+            red_wait --> red_stop : PED_TIMER
+        }
+    }
+@enduml

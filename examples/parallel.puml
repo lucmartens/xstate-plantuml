@@ -1,0 +1,35 @@
+@startuml
+    state "bold" as bold {
+        state "on" as bold_on
+        state "off" as bold_off
+        [*] --> bold_off 
+        bold_on --> bold_off : TOGGLE_BOLD
+        bold_off --> bold_on : TOGGLE_BOLD
+    }
+    state "underline" as underline {
+        state "on" as underline_on
+        state "off" as underline_off
+        [*] --> underline_off 
+        underline_on --> underline_off : TOGGLE_UNDERLINE
+        underline_off --> underline_on : TOGGLE_UNDERLINE
+    }
+    state "italics" as italics {
+        state "on" as italics_on
+        state "off" as italics_off
+        [*] --> italics_off 
+        italics_on --> italics_off : TOGGLE_ITALICS
+        italics_off --> italics_on : TOGGLE_ITALICS
+    }
+    state "list" as list {
+        state "none" as list_none
+        state "bullets" as list_bullets
+        state "numbers" as list_numbers
+        [*] --> list_none 
+        list_none --> list_bullets : BULLETS
+        list_none --> list_numbers : NUMBERS
+        list_bullets --> list_none : NONE
+        list_bullets --> list_numbers : NUMBERS
+        list_numbers --> list_bullets : BULLETS
+        list_numbers --> list_none : NONE
+    }
+@enduml
