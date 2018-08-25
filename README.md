@@ -2,6 +2,11 @@
 
 Convert a [xstate](https://github.com/davidkpiano/xstate) or [react-automata](https://github.com/MicheleBertoli/react-automata) statechart to a [plantuml](http://plantuml.com/state-diagram) state diagram
 
+## Installation
+```
+npm install xstate-plantuml
+```
+
 ## Usage
 
 ```js
