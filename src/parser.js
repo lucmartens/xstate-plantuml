@@ -1,5 +1,8 @@
 const _ = require('lodash/fp');
 
+const combinations = (collA, collB) =>
+  _.flatMap(a => _.map(b => [a, b], collB), collA);
+
 const state = (prefix, { states }) =>
   _.reduce(
     (acc, [k, v]) => [...acc, ['state', [k, `${prefix}_${k}`]]],
@@ -7,7 +10,7 @@ const state = (prefix, { states }) =>
     _.toPairs(states)
   );
 
-const events = (prefix, { states, initial }) => {
+const events = (prefix, config) => {
   const event = from => ([ev, target]) => {
     if (_.isString(target)) {
       return ['event', [`${prefix}_${from}`, `${prefix}_${target}`, ev]];
@@ -24,15 +27,28 @@ const events = (prefix, { states, initial }) => {
     }
   };
 
-  const initialEvents = initial
-    ? [['event', ['[*]', `${prefix}_${initial}`]]]
+  let ast = config.initial
+    ? [['event', ['[*]', `${prefix}_${config.initial}`]]]
     : [];
 
-  return _.reduce(
+  ast = _.reduce(
     (acc, [from, v]) => [...acc, ..._.map(event(from), _.toPairs(v.on))],
-    initialEvents,
-    _.toPairs(states)
+    ast,
+    _.toPairs(config.states)
   );
+
+  if (config.on) {
+    ast = _.reduce(
+      (acc, [[from], [ev, target]]) => {
+        const x = target[0] === '.' ? target.substr(1) : target;
+        return [...acc, event(from)([ev, x])];
+      },
+      ast,
+      combinations(_.toPairs(config.states), _.toPairs(config.on))
+    );
+  }
+
+  return ast;
 };
 
 const machine = xstate => [

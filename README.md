@@ -4,7 +4,8 @@
 - [x] Parallel machine
 - [ ] Hierarchical machine
 - [x] Initial event
-- [ ] Internal events
+- [x] Internal string events
+- [ ] Internal obj events
 - [x] String event `{on: {x: 'y'}}`
 - [x] Object event `{on: {x: {y: {}}}}`
 - [x] Array event `{on: {x: [{target: 'y'}]}}`

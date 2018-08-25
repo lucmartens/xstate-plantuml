@@ -51,6 +51,37 @@ describe('parse events', () => {
     const config = { initial: 'x', states: { x: {} } };
     expect(parser.events('pre', config)).toEqual([['event', ['[*]', 'pre_x']]]);
   });
+
+  test('internal', () => {
+    const config = {
+      states: { x: {}, y: {} },
+      on: { EV1: 'x', EV2: 'y' }
+    };
+
+    expect(parser.events('pre', config)).toEqual([
+      ['event', ['pre_x', 'pre_x', 'EV1']],
+      ['event', ['pre_x', 'pre_y', 'EV2']],
+      ['event', ['pre_y', 'pre_x', 'EV1']],
+      ['event', ['pre_y', 'pre_y', 'EV2']]
+    ]);
+  });
+
+  test.only('complex', () => {
+    const config = {
+      initial: 'x',
+      states: { x: { on: { EV3: 'y' } }, y: {} },
+      on: { EV1: '.x', EV2: '.y' }
+    };
+
+    expect(parser.events('pre', config)).toEqual([
+      ['event', ['[*]', 'pre_x']],
+      ['event', ['pre_x', 'pre_y', 'EV3']],
+      ['event', ['pre_x', 'pre_x', 'EV1']],
+      ['event', ['pre_x', 'pre_y', 'EV2']],
+      ['event', ['pre_y', 'pre_x', 'EV1']],
+      ['event', ['pre_y', 'pre_y', 'EV2']]
+    ]);
+  });
 });
 
 describe('root', () => {
