@@ -26,8 +26,8 @@ const root = () => [
   buffer => append('@enduml', buffer)
 ];
 
-const machine = ({ key }) => [
-  buffer => append(`state ${key} {`, buffer),
+const machine = ({ name, key }) => [
+  buffer => append(`state "${name}" as ${key} {`, buffer),
   buffer => append('}', buffer)
 ];
 
