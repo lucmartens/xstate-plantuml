@@ -39,10 +39,15 @@ const event = ([from, to, ev]) => [
   buffer => append(`${from} --> ${to} ${ev ? `: ${ev}` : ''}`, buffer)
 ];
 
+const action = ([machine, on, label]) => [
+  buffer => append(`${machine} : ${on}/${label}`, buffer)
+];
+
 const ops = {
   machine,
   state,
   event,
+  action,
   root
 };
 

@@ -84,6 +84,38 @@ describe('parse events', () => {
   });
 });
 
+describe('actions', () => {
+  test('none', () => {
+    const config = { key: 'machine', states: {} };
+    expect(parser.actions('pre', config)).toEqual([]);
+  });
+
+  test('onEntry', () => {
+    const config = { key: 'machine', states: { x: { onEntry: 'action' } } };
+    expect(parser.actions('pre', config)).toEqual([
+      ['action', ['machine', 'onEntry', 'action']]
+    ]);
+  });
+
+  test('onExit', () => {
+    const config = { key: 'machine', states: { x: { onExit: 'action' } } };
+    expect(parser.actions('pre', config)).toEqual([
+      ['action', ['machine', 'onExit', 'action']]
+    ]);
+  });
+
+  test('multiple', () => {
+    const config = {
+      key: 'machine',
+      states: { x: { onExit: 'action', onEntry: 'action' } }
+    };
+    expect(parser.actions('pre', config)).toEqual([
+      ['action', ['machine', 'onEntry', 'action']],
+      ['action', ['machine', 'onExit', 'action']]
+    ]);
+  });
+});
+
 describe('root', () => {
   test('simple machine', () => {
     const config = {
