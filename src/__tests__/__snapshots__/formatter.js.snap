@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`formatter nested machine 1`] = `
+"@startuml
+    state users-crud {
+        state \\"on\\" as users-crud_on
+        state \\"off\\" as users-crud_off
+        [*] --> users-crud_on 
+        users-crud_on --> users-crud_off : TOGGLE
+        users-crud_off --> users-crud_on : TOGGLE
+        state users-crud {
+            state \\"on\\" as users-crud_on
+            state \\"off\\" as users-crud_off
+            [*] --> users-crud_on 
+            users-crud_on --> users-crud_off : TOGGLE
+            users-crud_off --> users-crud_on : TOGGLE
+        }
+    }
+@enduml
+"
+`;
+
+exports[`formatter simple machine 1`] = `
+"@startuml
+    state users-crud {
+        state \\"on\\" as users-crud_on
+        state \\"off\\" as users-crud_off
+        [*] --> users-crud_on 
+        users-crud_on --> users-crud_off : TOGGLE
+        users-crud_off --> users-crud_on : TOGGLE
+    }
+@enduml
+"
+`;
