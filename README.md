@@ -9,9 +9,9 @@
 - [x] String event `{on: {x: 'y'}}`
 - [x] Object event `{on: {x: {y: {}}}}`
 - [x] Array event `{on: {x: [{target: 'y'}]}}`
-- [ ] String action `fetch`
+- [x] String action `fetch`
 - [ ] Object action `{ type: 'fetch'}`
 - [ ] Function action
-- [ ] `onEntry` actions
-- [ ] `onExit` actions
+- [x] `onEntry` actions
+- [x] `onExit` actions
 - [ ] `transition` actions
