@@ -2,14 +2,14 @@
 
 exports[`formatter nested machine 1`] = `
 "@startuml
-    state users-crud {
+    state \\"name\\" as key {
         machine : onEntry/a1
         state \\"on\\" as users-crud_on
         state \\"off\\" as users-crud_off
         [*] --> users-crud_on 
         users-crud_on --> users-crud_off : TOGGLE
         users-crud_off --> users-crud_on : TOGGLE
-        state users-crud {
+        state \\"name\\" as key {
             machine : onEntry/a1
             state \\"on\\" as users-crud_on
             state \\"off\\" as users-crud_off
@@ -24,7 +24,7 @@ exports[`formatter nested machine 1`] = `
 
 exports[`formatter simple machine 1`] = `
 "@startuml
-    state users-crud {
+    state \\"name\\" as key {
         machine : onEntry/a1
         state \\"on\\" as users-crud_on
         state \\"off\\" as users-crud_off

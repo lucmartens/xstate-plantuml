@@ -13,10 +13,17 @@ const iterateEvents = (fn, config) => {
   if (config.on) {
     ast = _.concat(
       ast,
-      _.map(([[from], [ev, target]]) => {
-        const x = target[0] === '.' ? target.substr(1) : target;
-        return fn(from, x, ev);
-      }, combinations(_.toPairs(config.states), _.toPairs(config.on)))
+      _.compact(
+        _.map(([[from], [ev, target]]) => {
+          if (_.isObject(target) && target.internal) {
+            return fn(from, target.target, ev);
+          }
+
+          if (_.isString(target) && target[0] === '.') {
+            return fn(from, target.substr(1), ev);
+          }
+        }, combinations(_.toPairs(config.states), _.toPairs(config.on)))
+      )
     );
   }
 
@@ -25,7 +32,13 @@ const iterateEvents = (fn, config) => {
 
 const state = (prefix, { states }) =>
   _.reduce(
-    (acc, [k, v]) => [...acc, ['state', [k, `${prefix}_${k}`]]],
+    (acc, [k, v]) => {
+      if (v.states) {
+        return acc;
+      }
+
+      return [...acc, ['state', [k, `${prefix}_${k}`]]];
+    },
     [],
     _.toPairs(states)
   );
@@ -55,7 +68,6 @@ const event = prefix => (from, target, ev) => {
   } else if (_.isObject(target) && !!target.internal) {
     targetName = target.target;
   }
-
   return ['event', [`${prefix}_${from}`, `${prefix}_${targetName}`, ev]];
 };
 
@@ -68,17 +80,28 @@ const events = (prefix, config) => {
   return ast;
 };
 
-const machine = xstate => [
+const submachine = (prefix, config) => {
+  return _.compact(
+    _.map(([name, target]) => {
+      if (_.isObject(target) && target.states) {
+        return machine(`${prefix}_${name}`, name, target);
+      }
+    }, _.toPairs(config.states))
+  );
+};
+
+const machine = (key, name, xstate) => [
   'machine',
-  { key: xstate.key },
-  ...actions(xstate.key, xstate),
-  ...state(xstate.key, xstate),
-  ...events(xstate.key, xstate)
+  { key, name },
+  ...actions(name, xstate),
+  ...state(name, xstate),
+  ...events(name, xstate),
+  ...submachine(name, xstate)
 ];
 
 const root = xstate => {
   if (!xstate.parallel) {
-    return ['root', {}, machine(xstate)];
+    return ['root', {}, machine(xstate.key, xstate.key, xstate)];
   }
 
   const machines = _.map(
@@ -86,7 +109,11 @@ const root = xstate => {
     _.toPairs(xstate.states)
   );
 
-  return ['root', {}, ..._.map(machine, machines)];
+  return [
+    'root',
+    {},
+    ..._.map(config => machine(config.key, config.key, config), machines)
+  ];
 };
 
 module.exports = {

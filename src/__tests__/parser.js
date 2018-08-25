@@ -55,7 +55,7 @@ describe('parse events', () => {
   test('internal', () => {
     const config = {
       states: { x: {}, y: {} },
-      on: { EV1: 'x', EV2: { target: 'y', internal: true } }
+      on: { EV1: '.x', EV2: { target: 'y', internal: true } }
     };
 
     expect(parser.events('pre', config)).toEqual([
@@ -154,6 +154,36 @@ describe('root', () => {
             off: {
               on: {
                 TOGGLE: 'on'
+              }
+            }
+          }
+        }
+      }
+    };
+
+    expect(parser.root(config)).toMatchSnapshot();
+  });
+
+  test('hierachical machine', () => {
+    const config = {
+      key: 'users-crud',
+      parallel: true,
+      states: {
+        light: {
+          initial: 'red',
+          states: {
+            red: {
+              on: {
+                TOGGLE: 'green'
+              },
+              initial: 'nested',
+              states: {
+                nested: {}
+              }
+            },
+            green: {
+              on: {
+                TOGGLE: 'red'
               }
             }
           }

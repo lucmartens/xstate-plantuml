@@ -1,5 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`root hierachical machine 1`] = `
+Array [
+  "root",
+  Object {},
+  Array [
+    "machine",
+    Object {
+      "key": "light",
+      "name": "light",
+    },
+    Array [
+      "state",
+      Array [
+        "green",
+        "light_green",
+      ],
+    ],
+    Array [
+      "event",
+      Array [
+        "[*]",
+        "light_red",
+      ],
+    ],
+    Array [
+      "event",
+      Array [
+        "light_red",
+        "light_green",
+        "TOGGLE",
+      ],
+    ],
+    Array [
+      "event",
+      Array [
+        "light_green",
+        "light_red",
+        "TOGGLE",
+      ],
+    ],
+    Array [
+      "machine",
+      Object {
+        "key": "light_red",
+        "name": "red",
+      },
+      Array [
+        "state",
+        Array [
+          "nested",
+          "red_nested",
+        ],
+      ],
+      Array [
+        "event",
+        Array [
+          "[*]",
+          "red_nested",
+        ],
+      ],
+    ],
+  ],
+]
+`;
+
 exports[`root parallel machine 1`] = `
 Array [
   "root",
@@ -8,6 +73,7 @@ Array [
     "machine",
     Object {
       "key": "light",
+      "name": "light",
     },
     Array [
       "state",
@@ -58,6 +124,7 @@ Array [
     "machine",
     Object {
       "key": "users-crud",
+      "name": "users-crud",
     },
     Array [
       "state",

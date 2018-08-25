@@ -2,7 +2,7 @@ const format = require('../formatter').default;
 
 const machine = [
   'machine',
-  { key: 'users-crud' },
+  { key: 'key', name: 'name' },
   ['action', ['machine', 'onEntry', 'a1']],
   ['state', ['on', 'users-crud_on']],
   ['state', ['off', 'users-crud_off']],
