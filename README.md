@@ -3,6 +3,7 @@
 Convert a [xstate](https://github.com/davidkpiano/xstate) or [react-automata](https://github.com/MicheleBertoli/react-automata) statechart to a [plantuml](http://plantuml.com/state-diagram) state diagram
 
 ## Installation
+
 ```
 npm install xstate-plantuml
 ```
@@ -18,11 +19,6 @@ const config = {
   states: {
     green: {
       on: {
-        TIMER: 'yellow'
-      }
-    },
-    yellow: {
-      on: {
         TIMER: 'red'
       }
     },
@@ -34,24 +30,21 @@ const config = {
   }
 };
 
-console.log(convert(config));
+convert(config, options);
 ```
 
-## Supports
+## Examples
 
-- [x] Single machine
-- [x] Parallel machine
-- [x] Hierarchical machine
-- [ ] History machine
-- [x] Initial event
-- [x] Internal string events `{on: {x: '.y'}}`
-- [x] Internal obj events `{on {x: {target: 'y'}}}`
-- [x] String event `{on: {x: 'y'}}`
-- [x] Object event `{on: {x: {y: {}}}}`
-- [x] Array event `{on: {x: [{target: 'y'}]}}`
-- [x] String action `fetch`
-- [ ] Object action `{ type: 'fetch'}`
-- [ ] Function action
-- [x] `onEntry` actions
-- [x] `onExit` actions
-- [ ] `transition` actions
+### Hierarchical machine
+
+- [json](./examples/alarm.json)
+- [puml](./examples/alarm.puml)
+
+![alarm](./examples/alarm.png)
+
+### Parallel machine
+
+- [json](./examples/parallel.json)
+- [puml](./examples/parallel.puml)
+
+![parallel](./examples/parallel.png)

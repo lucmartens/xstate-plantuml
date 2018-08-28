@@ -1,0 +1,25 @@
+@startuml
+left to right direction
+state "alarm" as alarm {
+  [*] --> alarm.inactive
+
+  state "inactive" as alarm.inactive {
+    alarm.inactive --> alarm.active.waiting : ENABLE
+  }
+
+  state "active" as alarm.active {
+    alarm.active --> alarm.inactive : DISABLE
+    state "snoozing" as alarm.active.snoozing {
+      alarm.active.snoozing --> alarm.active.beeping : TIMER
+    }
+
+    state "waiting" as alarm.active.waiting {
+      alarm.active.waiting --> alarm.active.beeping : TIMER
+    }
+
+    state "beeping" as alarm.active.beeping {
+      alarm.active.beeping --> alarm.active.snoozing : SNOOZE
+    }
+  }
+}
+@enduml

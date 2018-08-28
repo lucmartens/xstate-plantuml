@@ -1,35 +1,59 @@
 @startuml
-    state "bold" as bold {
-        state "on" as bold_on
-        state "off" as bold_off
-        [*] --> bold_off 
-        bold_on --> bold_off : TOGGLE_BOLD
-        bold_off --> bold_on : TOGGLE_BOLD
+left to right direction
+state "wordmachine" as wordmachine {
+  state "bold" as wordmachine.bold {
+    [*] --> wordmachine.bold.off
+
+    state "on" as wordmachine.bold.on {
+      wordmachine.bold.on --> wordmachine.bold.off : TOGGLE_BOLD
     }
-    state "underline" as underline {
-        state "on" as underline_on
-        state "off" as underline_off
-        [*] --> underline_off 
-        underline_on --> underline_off : TOGGLE_UNDERLINE
-        underline_off --> underline_on : TOGGLE_UNDERLINE
+
+    state "off" as wordmachine.bold.off {
+      wordmachine.bold.off --> wordmachine.bold.on : TOGGLE_BOLD
     }
-    state "italics" as italics {
-        state "on" as italics_on
-        state "off" as italics_off
-        [*] --> italics_off 
-        italics_on --> italics_off : TOGGLE_ITALICS
-        italics_off --> italics_on : TOGGLE_ITALICS
+  }
+
+  state "underline" as wordmachine.underline {
+    [*] --> wordmachine.underline.off
+
+    state "on" as wordmachine.underline.on {
+      wordmachine.underline.on --> wordmachine.underline.off : TOGGLE_UNDERLINE
     }
-    state "list" as list {
-        state "none" as list_none
-        state "bullets" as list_bullets
-        state "numbers" as list_numbers
-        [*] --> list_none 
-        list_none --> list_bullets : BULLETS
-        list_none --> list_numbers : NUMBERS
-        list_bullets --> list_none : NONE
-        list_bullets --> list_numbers : NUMBERS
-        list_numbers --> list_bullets : BULLETS
-        list_numbers --> list_none : NONE
+
+    state "off" as wordmachine.underline.off {
+      wordmachine.underline.off --> wordmachine.underline.on : TOGGLE_UNDERLINE
     }
+  }
+
+  state "italics" as wordmachine.italics {
+    [*] --> wordmachine.italics.off
+
+    state "on" as wordmachine.italics.on {
+      wordmachine.italics.on --> wordmachine.italics.off : TOGGLE_ITALICS
+    }
+
+    state "off" as wordmachine.italics.off {
+      wordmachine.italics.off --> wordmachine.italics.on : TOGGLE_ITALICS
+    }
+  }
+
+  state "list" as wordmachine.list {
+    [*] --> wordmachine.list.none
+
+    state "none" as wordmachine.list.none {
+      wordmachine.list.none --> wordmachine.list.bullets : BULLETS
+      wordmachine.list.none --> wordmachine.list.numbers : NUMBERS
+    }
+
+    state "bullets" as wordmachine.list.bullets {
+      wordmachine.list.bullets --> wordmachine.list.none : NONE
+      wordmachine.list.bullets --> wordmachine.list.numbers : NUMBERS
+    }
+
+    state "numbers" as wordmachine.list.numbers {
+      wordmachine.list.numbers --> wordmachine.list.bullets : BULLETS
+      wordmachine.list.numbers --> wordmachine.list.none : NONE
+    }
+  }
+}
 @enduml
