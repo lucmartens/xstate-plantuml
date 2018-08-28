@@ -1,0 +1,17 @@
+{
+  "key": "alarm",
+  "initial": "inactive",
+  "states": {
+    "inactive": { "on": { "ENABLE": "active.waiting" } },
+    "active": {
+      "states": {
+        "snoozing": { "on": { "TIMER": "beeping" } },
+        "waiting": { "on": { "TIMER": "beeping" } },
+        "beeping": { "on": { "SNOOZE": "snoozing" } }
+      },
+      "on": {
+        "DISABLE": "inactive"
+      }
+    }
+  }
+}
