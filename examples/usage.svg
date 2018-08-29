@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="123px" preserveAspectRatio="none" style="width:305px;height:123px;" version="1.1" viewBox="0 0 305 123" width="305px" zoomAndPan="magnify"><defs><filter height="300%" id="f148vany0lw65d" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FEFECE" filter="url(#f148vany0lw65d)" height="104.4883" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="287" x="6" y="8"/><rect fill="#FFFFFF" height="72" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="281" x="9" y="37.4883"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="6" x2="293" y1="34.4883" y2="34.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="31" x="134" y="26.5352">light</text><ellipse cx="27" cy="72.4883" fill="#000000" filter="url(#f148vany0lw65d)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#f148vany0lw65d)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="60" x="74" y="47.4883"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="74" x2="134" y1="73.9766" y2="73.9766"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="40" x="84" y="66.0234">green</text><rect fill="#FEFECE" filter="url(#f148vany0lw65d)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="50" x="210" y="47.4883"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="210" x2="260" y1="73.9766" y2="73.9766"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="23" x="223.5" y="66.0234">red</text><!--link *start*light to light.green--><path d="M37.0664,72.4883 C45.1971,72.4883 57.1506,72.4883 68.7145,72.4883 " fill="none" id="*start*light-light.green" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="73.9852,72.4883,64.9852,68.4883,68.9852,72.4883,64.9852,76.4883,73.9852,72.4883" style="stroke: #A80036; stroke-width: 1.0;"/><!--link light.green to light.red--><path d="M134.054,72.4883 C155.2237,72.4883 183.4624,72.4883 204.689,72.4883 " fill="none" id="light.green-light.red" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="209.9259,72.4883,200.9259,68.4883,204.9259,72.4883,200.9259,76.4883,209.9259,72.4883" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="38" x="153" y="69.0566">TIMER</text><!--link light.red to light.green--><path d="M209.7843,87.1393 C204.11,89.765 197.99,92.1038 192,93.4883 C174.6789,97.4919 169.4012,97.1282 152,93.4883 C147.6193,92.572 143.1494,91.2321 138.7864,89.6654 " fill="none" id="light.red-light.green" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="134.1033,87.8856,141.095,94.8221,138.7771,89.662,143.9373,87.3441,134.1033,87.8856" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="38" x="153" y="90.0566">TIMER</text><!--
+@startuml
+left to right direction
+state "light" as light {
+  [*] - -> light.green
+
+  state "green" as light.green {
+    light.green - -> light.red : TIMER
+  }
+
+  state "red" as light.red {
+    light.red - -> light.green : TIMER
+  }
+}
+@enduml
+
+PlantUML version 1.2018.09(Fri Jul 27 18:58:18 CEST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_91-b14
+Operating System: Mac OS X
+OS Version: 10.13.1
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

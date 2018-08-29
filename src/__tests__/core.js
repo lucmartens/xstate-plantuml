@@ -13,7 +13,7 @@ const example = (name, opts) => {
   });
 };
 
-describe('xstate-plantuml core examples', () => {
+describe('examples', () => {
   example('alarm');
   example('bank');
   example('parallel');

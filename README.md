@@ -1,5 +1,8 @@
 # xstate-plantuml
 
+[![npm](https://img.shields.io/npm/v/xstate-plantuml.svg?style=flat-square)](https://www.npmjs.com/package/xstate-plantuml)
+[![Travis](https://img.shields.io/travis/lucmartens/xstate-plantuml.svg?style=flat-square)](https://travis-ci.org/lucmartens/xstate-plantuml/)
+
 Visualize a [xstate](https://github.com/davidkpiano/xstate) or [react-automata](https://github.com/MicheleBertoli/react-automata) statechart as a [plantuml](https://github.com/plantuml/plantuml) state diagram.
 
 ## Installation
@@ -10,7 +13,7 @@ npm install xstate-plantuml
 
 ## Usage
 
-import xstate-plantuml and call it's default export using a xstate config or machine
+import `xstate-plantuml` and call it's default export using a xstate config or machine
 
 ```js
 import visualize from 'xstate-plantuml';
@@ -56,7 +59,7 @@ state "light" as light {
 
 Which you can compile to the following image
 
-![usage](examples/usage.png)
+![usage](examples/usage.svg)
 
 ## Examples
 
@@ -65,18 +68,18 @@ Which you can compile to the following image
 - [json](./examples/alarm.json)
 - [puml](./examples/alarm.puml)
 
-![alarm](./examples/alarm.png)
+![alarm](./examples/alarm.svg)
 
 ### Parallel state
 
 - [json](./examples/parallel.json)
 - [puml](./examples/parallel.puml)
 
-![parallel](./examples/parallel.png)
+![parallel](./examples/parallel.svg)
 
 ## History state
 
 - [json](./examples/bank.json)
 - [puml](./examples/bank.puml)
 
-![bank](./examples/bank.png)
+![bank](./examples/bank.svg)
