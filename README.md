@@ -1,6 +1,6 @@
 # xstate-plantuml
 
-Convert a [xstate](https://github.com/davidkpiano/xstate) or [react-automata](https://github.com/MicheleBertoli/react-automata) statechart to a [plantuml](http://plantuml.com/state-diagram) state diagram
+Visualize a [xstate](https://github.com/davidkpiano/xstate) or [react-automata](https://github.com/MicheleBertoli/react-automata) statechart as a [plantuml](http://plantuml.com/state-diagram) state diagram
 
 ## Installation
 
@@ -11,7 +11,7 @@ npm install xstate-plantuml
 ## Usage
 
 ```js
-import convert from 'xstate-plantuml';
+import visualize from 'xstate-plantuml';
 
 const config = {
   key: 'light',
@@ -30,7 +30,7 @@ const config = {
   }
 };
 
-convert(config, options);
+visualize(config, options);
 ```
 
 ## Examples
@@ -48,3 +48,10 @@ convert(config, options);
 - [puml](./examples/parallel.puml)
 
 ![parallel](./examples/parallel.png)
+
+## History machine
+
+- [json](./examples/bank.json)
+- [puml](./examples/bank.puml)
+
+![bank](./examples/bank.png)

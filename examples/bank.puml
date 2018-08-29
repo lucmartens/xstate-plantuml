@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+state "bank" as bank {
+  [*] --> bank.method
+
+  state "method" as bank.method {
+    [*] --> bank.method.cash
+
+    bank.method --> bank.review : NEXT
+    state "cash" as bank.method.cash {
+      bank.method.cash --> bank.method.check : SWITCH_CHECK
+    }
+
+    state "check" as bank.method.check {
+      bank.method.check --> bank.method.cash : SWITCH_CASH
+    }
+
+    state "hist" as bank.method.hist {
+    }
+  }
+
+  state "review" as bank.review {
+    bank.review --> bank.method.hist : PREVIOUS
+  }
+}
+@enduml
