@@ -68,25 +68,25 @@ Which you can compile to the following image
 - [json](./examples/alarm.json)
 - [puml](./examples/alarm.puml)
 
-![alarm](./examples/alarm.svg)
+![alarm](https://raw.githubusercontent.com/lucmartens/xstate-plantuml/master/examples/alarm.svg?sanitize=true)
 
 ### Parallel state
 
 - [json](./examples/text-editor.json)
 - [puml](./examples/text-editor.puml)
 
-![text-editor](./examples/text-editor.svg)
+![text-editor](https://raw.githubusercontent.com/lucmartens/xstate-plantuml/master/examples/text-editor.svg?sanitize=true)
 
 ## History state
 
 - [json](./examples/payment.json)
 - [puml](./examples/payment.puml)
 
-![payment](./examples/payment.svg)
+![payment](https://raw.githubusercontent.com/lucmartens/xstate-plantuml/master/examples/payment.svg?sanitize=true)
 
 ## Guards and actions
 
 - [json](./examples/download.json)
 - [puml](./examples/download.puml)
 
-![download](./examples/download.svg)
+![download](https://raw.githubusercontent.com/lucmartens/xstate-plantuml/master/examples/download.svg?sanitize=true)
