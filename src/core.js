@@ -11,34 +11,71 @@ const resolvePath = (stateNode, path) =>
   path[0] === '#' ? path.substr(1) : getNode(stateNode, path).id;
 
 /**
- * Write `stateNode` events to `buffer`.
+ * Return a string representing `transition` guard clauses
  *
- * An event is a constant string that initiates a transition
- * between states. An `event` originates from state `from` and
- * causes the machine to transition to state `to`.
- *
- * In plantuml, this is represented as `from --> to : event`.
- * the initial event is represented as `[*] --> to`.
+ * Guard clauses are represented as
+ *    `[cond1,cond2]`
  */
-const events = (stateNode, buffer) => {
+const transitionGuards = cond => {
+  if (!cond || !cond.length) {
+    return '';
+  }
+
+  cond = Array.isArray(cond) ? cond : [cond];
+  cond = cond.map(c => (typeof c === 'string' ? c : c.name));
+  return `\\l[${cond.join(',')}]`;
+};
+
+/**
+ * Return a string representing `transition` actions
+ *
+ * Transition actions are represented as
+ *    `/action1,action2`
+ */
+const transitionActions = actions => {
+  if (!actions || !actions.length) {
+    return '';
+  }
+
+  actions = Array.isArray(actions) ? actions : [actions];
+  actions = actions.map(a => (typeof a === 'string' ? a : a.name));
+  return `\\l/${actions.join(',')}`;
+};
+
+/**
+ * Write `stateNode` transitions to `buffer`.
+ *
+ * A transition is represented as
+ *    `from --> to : event [guards] / actions`.
+ *
+ * The initial transition is represented as
+ *    `[*] --> to`.
+ */
+const transitions = (stateNode, buffer) => {
   if (stateNode.initial) {
     const to = resolvePath(stateNode, stateNode.initial);
     buffer.appendf`[*] --> ${to}`;
     buffer.newline();
   }
 
-  for (const [ev, targets] of Object.entries(stateNode.on)) {
-    for (const { target } of targets) {
+  for (const [event, transition] of Object.entries(stateNode.on)) {
+    for (let { target, cond, actions } of transition) {
+      const from = stateNode.id;
       const to = resolvePath(stateNode.parent, target[0]);
-      buffer.appendf`${stateNode.id} --> ${to} : ${ev}`;
+      const guards = transitionGuards(cond);
+      actions = transitionActions(actions);
+      buffer.appendf`${from} --> ${to} : ${event}${guards}${actions}`;
     }
   }
 };
 
 /**
  * Write `stateNode` actions to `buffer`.
+ *
+ * A state action is represented as
+ *    `my.node : action`
  */
-const actions = (stateNode, buffer) => {
+const stateActions = (stateNode, buffer) => {
   for (const action of stateNode.onEntry) {
     buffer.appendf`${stateNode.id} : onEntry/${action}`;
   }
@@ -64,14 +101,14 @@ const states = (stateNode, buffer) => {
 };
 
 /**
- * Write `stateNode` to buffer.
+ * Write `stateNode` to `buffer`.
  */
 const state = (stateNode, buffer) => {
   buffer.appendf`state "${stateNode.key}" as ${stateNode.id} {`;
   buffer.indent();
 
-  actions(stateNode, buffer);
-  events(stateNode, buffer);
+  stateActions(stateNode, buffer);
+  transitions(stateNode, buffer);
   states(stateNode, buffer);
 
   buffer.dedent();
