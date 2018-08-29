@@ -1,0 +1,16 @@
+{
+  "key": "bank",
+  "initial": "method",
+  "states": {
+    "method": {
+      "initial": "cash",
+      "states": {
+        "cash": { "on": { "SWITCH_CHECK": "check" } },
+        "check": { "on": { "SWITCH_CASH": "cash" } },
+        "hist": { "history": true }
+      },
+      "on": { "NEXT": "review" }
+    },
+    "review": { "on": { "PREVIOUS": "method.hist" } }
+  }
+}
