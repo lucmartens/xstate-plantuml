@@ -1,5 +1,5 @@
 {
-  "key": "bank",
+  "key": "payment",
   "initial": "method",
   "states": {
     "method": {
