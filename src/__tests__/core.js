@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const convert = require('../core');
+const visualize = require('../core');
 
 const example = (name, opts) => {
   const root = `${__dirname}/../../examples`;
@@ -9,7 +9,7 @@ const example = (name, opts) => {
   const puml = fs.readFileSync(`${root}/${name}.puml`, 'utf8');
 
   test(name, () => {
-    expect(convert(json, opts)).toEqual(puml);
+    expect(visualize(json, opts)).toEqual(puml);
   });
 };
 

@@ -4,16 +4,16 @@ class Buffer {
     this.indentation = 0;
   }
 
+  get whitespace() {
+    return new Array(this.indentation + 1).join('  ');
+  }
+
   indent() {
     this.indentation++;
   }
 
-  outdent() {
+  dedent() {
     this.indentation--;
-  }
-
-  whitespace() {
-    return new Array(this.indentation + 1).join('  ');
   }
 
   newline() {
@@ -21,15 +21,15 @@ class Buffer {
   }
 
   append(value) {
-    this.value += this.whitespace() + value + '\n';
+    this.value += this.whitespace + value + '\n';
   }
 
   appendf(strings, ...values) {
-    const fn = (str, value) =>
-      str + value.replace(/[\(\)]/g, '').replace(/-/g, '_');
+    const sanitize = (value = '') =>
+      value.replace(/[\(\)]/g, '').replace(/-/g, '_');
 
     const value = strings
-      .map((str, i) => fn(str, values[i] || ''))
+      .map((str, i) => str + sanitize(values[i]))
       .join('');
 
     this.append(value);

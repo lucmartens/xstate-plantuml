@@ -1,0 +1,14 @@
+@startuml
+left to right direction
+state "light" as light {
+  [*] --> light.green
+
+  state "green" as light.green {
+    light.green --> light.red : TIMER
+  }
+
+  state "red" as light.red {
+    light.red --> light.green : TIMER
+  }
+}
+@enduml
