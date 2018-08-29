@@ -1,5 +1,5 @@
 {
-  "key": "wordmachine",
+  "key": "textEditor",
   "parallel": true,
   "states": {
     "bold": {

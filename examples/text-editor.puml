@@ -1,0 +1,59 @@
+@startuml
+left to right direction
+state "textEditor" as textEditor {
+  state "bold" as textEditor.bold {
+    [*] --> textEditor.bold.off
+
+    state "on" as textEditor.bold.on {
+      textEditor.bold.on --> textEditor.bold.off : TOGGLE_BOLD
+    }
+
+    state "off" as textEditor.bold.off {
+      textEditor.bold.off --> textEditor.bold.on : TOGGLE_BOLD
+    }
+  }
+
+  state "underline" as textEditor.underline {
+    [*] --> textEditor.underline.off
+
+    state "on" as textEditor.underline.on {
+      textEditor.underline.on --> textEditor.underline.off : TOGGLE_UNDERLINE
+    }
+
+    state "off" as textEditor.underline.off {
+      textEditor.underline.off --> textEditor.underline.on : TOGGLE_UNDERLINE
+    }
+  }
+
+  state "italics" as textEditor.italics {
+    [*] --> textEditor.italics.off
+
+    state "on" as textEditor.italics.on {
+      textEditor.italics.on --> textEditor.italics.off : TOGGLE_ITALICS
+    }
+
+    state "off" as textEditor.italics.off {
+      textEditor.italics.off --> textEditor.italics.on : TOGGLE_ITALICS
+    }
+  }
+
+  state "list" as textEditor.list {
+    [*] --> textEditor.list.none
+
+    state "none" as textEditor.list.none {
+      textEditor.list.none --> textEditor.list.bullets : BULLETS
+      textEditor.list.none --> textEditor.list.numbers : NUMBERS
+    }
+
+    state "bullets" as textEditor.list.bullets {
+      textEditor.list.bullets --> textEditor.list.none : NONE
+      textEditor.list.bullets --> textEditor.list.numbers : NUMBERS
+    }
+
+    state "numbers" as textEditor.list.numbers {
+      textEditor.list.numbers --> textEditor.list.bullets : BULLETS
+      textEditor.list.numbers --> textEditor.list.none : NONE
+    }
+  }
+}
+@enduml

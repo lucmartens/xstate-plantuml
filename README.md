@@ -72,14 +72,21 @@ Which you can compile to the following image
 
 ### Parallel state
 
-- [json](./examples/parallel.json)
-- [puml](./examples/parallel.puml)
+- [json](./examples/text-editor.json)
+- [puml](./examples/text-editor.puml)
 
-![parallel](./examples/parallel.svg)
+![text-editor](./examples/text-editor.svg)
 
 ## History state
 
-- [json](./examples/bank.json)
-- [puml](./examples/bank.puml)
+- [json](./examples/payment.json)
+- [puml](./examples/payment.puml)
 
-![bank](./examples/bank.svg)
+![payment](./examples/payment.svg)
+
+## Guards and actions
+
+- [json](./examples/download.json)
+- [puml](./examples/download.puml)
+
+![download](./examples/download.svg)
