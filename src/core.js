@@ -74,32 +74,41 @@ const state = (stateNode, buffer) => {
   events(stateNode, buffer);
   states(stateNode, buffer);
 
-  buffer.outdent();
+  buffer.dedent();
   buffer.append(`}`);
 };
 
-const options = (opts, buffer) => {
-  if (opts.leftToRight) {
+/**
+ * Write plantuml commands to `buffer`.
+ */
+const commands = (options, buffer) => {
+  if (options.leftToRight) {
     buffer.append('left to right direction');
   }
 };
 
-const defaultOpts = {
+const defaultOptions = {
   leftToRight: true
 };
 
-const convert = (machine, opts = defaultOpts) => {
+/**
+ * Visualize a xstate config or instantiated machine as a plantuml
+ * state diagram.
+ */
+const visualize = (machine, options = {}) => {
+  options = { ...defaultOptions, ...options };
+
   const buffer = new Buffer();
   const stateNode = isStateNode(machine)
     ? machine
     : xstate.Machine(machine);
 
   buffer.append('@startuml');
-  options(opts, buffer);
+  commands(options, buffer);
   state(stateNode, buffer);
   buffer.append('@enduml');
 
   return buffer.value;
 };
 
-module.exports = convert;
+module.exports = visualize;

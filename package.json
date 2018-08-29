@@ -1,12 +1,13 @@
 {
   "name": "xstate-plantuml",
   "version": "0.2.0",
-  "description": "Convert a xstate or react-automata statechart to a plantuml state diagram",
+  "description": "Visualize a xstate or react-automata statechart as a plantuml state diagram",
   "keywords": [
     "xstate",
     "react-automata",
     "plantuml",
-    "statecharts"
+    "statecharts",
+    "visualization"
   ],
   "main": "src/index.js",
   "license": "MIT",
