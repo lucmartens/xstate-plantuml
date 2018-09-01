@@ -61,6 +61,24 @@ Which you can compile to the following image
 
 ![usage](examples/usage.svg?sanitize=true)
 
+## Options
+
+In addition to a state machine, `visualize` accepts an options map
+
+| option      | default | description                                                       |
+| ----------- | ------- | ----------------------------------------------------------------- |
+| leftToRight | true    | whether to render left to right or top to bottom                  |
+| skinParams  | []      | Additional [skinparams](http://plantuml.com/skinparam) to include |
+
+```js
+visualize(config, {
+  leftToRight: false,
+  skinParams: ['monochrome true']
+});
+```
+
+![options](examples/options.svg?sanitize=true)
+
 ## Examples
 
 ### Hierarchical state
