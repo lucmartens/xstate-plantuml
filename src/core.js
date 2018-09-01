@@ -100,10 +100,15 @@ const commands = (options, buffer) => {
   if (options.leftToRight) {
     buffer.append('left to right direction');
   }
+
+  for (const skinParam of options.skinParams) {
+    buffer.append(`skinparam ${skinParam}`);
+  }
 };
 
 const defaultOptions = {
-  leftToRight: true
+  leftToRight: true,
+  skinParams: []
 };
 
 const visualize = (machine, options = {}) => {
