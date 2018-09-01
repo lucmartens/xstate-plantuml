@@ -57,7 +57,7 @@ state "light" as light {
 @enduml
 ```
 
-Which you can compile to the following image
+Which you can render to the following image
 
 ![usage](examples/usage.svg?sanitize=true)
 
@@ -70,12 +70,34 @@ In addition to a state machine, `visualize` accepts an options map
 | leftToRight | true    | whether to render left to right or top to bottom                  |
 | skinParams  | []      | Additional [skinparams](http://plantuml.com/skinparam) to include |
 
+Our previous example with different options
+
 ```js
 visualize(config, {
   leftToRight: false,
   skinParams: ['monochrome true']
 });
 ```
+
+```plantuml
+@startuml
+skinparam monochrome true
+
+state "light" as light {
+  [*] --> light.green
+
+  state "green" as light.green {
+    light.green --> light.red : TIMER
+  }
+
+  state "red" as light.red {
+    light.red --> light.green : TIMER
+  }
+}
+@enduml
+```
+
+compiles to
 
 ![options](examples/options.svg?sanitize=true)
 
@@ -95,21 +117,21 @@ visualize(config, {
 
 ![text-editor](./examples/text-editor.svg?sanitize=true)
 
-## History state
+### History state
 
 - [json](./examples/payment.json)
 - [puml](./examples/payment.puml)
 
 ![payment](./examples/payment.svg?sanitize=true)
 
-## Internal transitions
+### Internal transitions
 
 - [json](./examples/word.json)
 - [puml](./examples/word.puml)
 
 ![word](./examples/word.svg?sanitize=true)
 
-## Guards, actions and activities
+### Guards, actions and activities
 
 - [json](./examples/download.json)
 - [puml](./examples/download.puml)
