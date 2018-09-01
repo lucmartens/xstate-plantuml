@@ -1,21 +1,18 @@
 const xstate = require('xstate');
 const Buffer = require('./buffer');
 
-const isStateNode = machine =>
-  machine.constructor.name === 'StateNode';
-
-const getNode = (stateNode, path) =>
-  path.split('.').reduce((acc, k) => acc.states[k], stateNode);
+const isStateNode = machine => machine.constructor.name === 'StateNode';
 
 const resolvePath = (stateNode, path) =>
-  path[0] === '#' ? path.substr(1) : getNode(stateNode, path).id;
+  path[0] === '#'
+    ? stateNode.getStateNodeById(path).id
+    : stateNode.getStateNodeByPath(path).id;
 
-/**
- * Return a string representing `transition` guard clauses
- *
- * Guard clauses are represented as
- *    `[cond1,cond2]`
- */
+const iterateTransitions = stateNode =>
+  stateNode
+    ? Object.entries(stateNode.on).map(([event, v]) => ({ event, ...v[0] }))
+    : [];
+
 const transitionGuards = cond => {
   if (!cond || !cond.length) {
     return '';
@@ -26,12 +23,6 @@ const transitionGuards = cond => {
   return `\\l[${cond.join(',')}]`;
 };
 
-/**
- * Return a string representing `transition` actions
- *
- * Transition actions are represented as
- *    `/action1,action2`
- */
 const transitionActions = actions => {
   if (!actions || !actions.length) {
     return '';
@@ -42,40 +33,31 @@ const transitionActions = actions => {
   return `\\l/${actions.join(',')}`;
 };
 
-/**
- * Write `stateNode` transitions to `buffer`.
- *
- * A transition is represented as
- *    `from --> to : event [guards] / actions`.
- *
- * The initial transition is represented as
- *    `[*] --> to`.
- */
 const transitions = (stateNode, buffer) => {
+  const transition = ({ event, target, cond, actions }) => {
+    const from = stateNode.id;
+    const to = resolvePath(stateNode.parent, target[0]);
+    const guards = transitionGuards(cond);
+    actions = transitionActions(actions);
+    buffer.appendf`${from} --> ${to} : ${event}${guards}${actions}`;
+  };
+
   if (stateNode.initial) {
     const to = resolvePath(stateNode, stateNode.initial);
     buffer.appendf`[*] --> ${to}`;
     buffer.newline();
   }
 
-  for (const [event, transition] of Object.entries(stateNode.on)) {
-    for (let { target, cond, actions } of transition) {
-      const from = stateNode.id;
-      const to = resolvePath(stateNode.parent, target[0]);
-      const guards = transitionGuards(cond);
-      actions = transitionActions(actions);
-      buffer.appendf`${from} --> ${to} : ${event}${guards}${actions}`;
-    }
-  }
+  iterateTransitions(stateNode.parent)
+    .filter(({ internal }) => internal)
+    .forEach(transition);
+
+  iterateTransitions(stateNode)
+    .filter(({ internal }) => !internal)
+    .forEach(transition);
 };
 
-/**
- * Write `stateNode` actions to `buffer`.
- *
- * A state action is represented as
- *    `my.node : action`
- */
-const stateActions = (stateNode, buffer) => {
+const internalActions = (stateNode, buffer) => {
   for (const action of stateNode.onEntry) {
     buffer.appendf`${stateNode.id} : onEntry/${action}`;
   }
@@ -85,12 +67,8 @@ const stateActions = (stateNode, buffer) => {
   }
 };
 
-/**
- * Write `stateNode` states to `buffer`.
- */
 const states = (stateNode, buffer) => {
   const values = Object.values(stateNode.states);
-
   for (const [index, child] of values.entries()) {
     state(child, buffer);
 
@@ -100,14 +78,11 @@ const states = (stateNode, buffer) => {
   }
 };
 
-/**
- * Write `stateNode` to `buffer`.
- */
 const state = (stateNode, buffer) => {
   buffer.appendf`state "${stateNode.key}" as ${stateNode.id} {`;
   buffer.indent();
 
-  stateActions(stateNode, buffer);
+  internalActions(stateNode, buffer);
   transitions(stateNode, buffer);
   states(stateNode, buffer);
 
@@ -115,9 +90,6 @@ const state = (stateNode, buffer) => {
   buffer.append(`}`);
 };
 
-/**
- * Write plantuml commands to `buffer`.
- */
 const commands = (options, buffer) => {
   if (options.leftToRight) {
     buffer.append('left to right direction');
@@ -128,17 +100,11 @@ const defaultOptions = {
   leftToRight: true
 };
 
-/**
- * Visualize a xstate config or instantiated machine as a plantuml
- * state diagram.
- */
 const visualize = (machine, options = {}) => {
   options = { ...defaultOptions, ...options };
 
   const buffer = new Buffer();
-  const stateNode = isStateNode(machine)
-    ? machine
-    : xstate.Machine(machine);
+  const stateNode = isStateNode(machine) ? machine : xstate.Machine(machine);
 
   buffer.append('@startuml');
   commands(options, buffer);
