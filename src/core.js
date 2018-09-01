@@ -47,13 +47,7 @@ const transitions = (stateNode, buffer) => {
     buffer.newline();
   }
 
-  iterateTransitions(stateNode)
-    .filter(({ internal }) => internal)
-    .forEach(transition);
-
-  iterateTransitions(stateNode)
-    .filter(({ internal }) => !internal)
-    .forEach(transition);
+  iterateTransitions(stateNode).forEach(transition);
 };
 
 const activities = (stateNode, buffer) => {
