@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="447px" preserveAspectRatio="none" style="width:482px;height:447px;" version="1.1" viewBox="0 0 482 447" width="482px" zoomAndPan="magnify"><defs><filter height="300%" id="f1t00rqyvumfz9" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--cluster word--><rect fill="#FEFECE" filter="url(#f1t00rqyvumfz9)" height="420" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="456" x="14" y="16"/><rect fill="#FFFFFF" height="387.5117" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="450" x="17" y="45.4883"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="14" x2="470" y1="42.4883" y2="42.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="35" x="224.5" y="33.5352">word</text><!--cluster word.direction--><rect fill="#FEFECE" filter="url(#f1t00rqyvumfz9)" height="385" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="440" x="22" y="43"/><rect fill="#FFFFFF" height="352.5117" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="434" x="25" y="72.4883"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="22" x2="462" y1="69.4883" y2="69.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="61" x="211.5" y="60.5352">direction</text><ellipse cx="40" cy="410" fill="#000000" filter="url(#f1t00rqyvumfz9)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#f1t00rqyvumfz9)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="50" x="397.5" y="347"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="397.5" x2="447.5" y1="373.4883" y2="373.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="22" x="411.5" y="365.5352">left</text><rect fill="#FEFECE" filter="url(#f1t00rqyvumfz9)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="53" x="396" y="240"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="396" x2="449" y1="266.4883" y2="266.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="33" x="406" y="258.5352">right</text><rect fill="#FEFECE" filter="url(#f1t00rqyvumfz9)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="63" x="391" y="155"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="391" x2="454" y1="181.4883" y2="181.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="43" x="401" y="173.5352">center</text><rect fill="#FEFECE" filter="url(#f1t00rqyvumfz9)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="61" x="392" y="70"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="392" x2="453" y1="96.4883" y2="96.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="41" x="402" y="88.5352">justify</text><!--link *start*word.direction to word.direction.left--><path d="M50.1322,412.0874 C63.9428,414.7461 89.4804,419 111.5,419 C111.5,419 111.5,419 329.5,419 C352.5146,419 375.6221,407.393 393.0466,395.7151 " fill="none" id="*start*word.direction-word.direction.left" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="397.3506,392.7517,387.6694,394.5611,393.2324,395.5872,392.2062,401.1502,397.3506,392.7517" style="stroke: #A80036; stroke-width: 1.0;"/><!--link word.direction to word.direction.left--><path d="M40.0169,217.3758 C40.3829,225.0596 47.2429,348 111.5,348 C111.5,348 111.5,348 329.5,348 C350.991,348 374.4145,354.083 392.3777,360.1241 " fill="none" id="word.direction-word.direction.left" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="397.2933,361.8218,390.0922,355.1029,392.5672,360.1895,387.4806,362.6646,397.2933,361.8218" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="73" x="184" y="344.5684">LEFT_CLICK</text><!--link word.direction to word.direction.right--><path d="M40.393,217.4941 C44.2856,222.3281 76.5192,261 111.5,261 C111.5,261 111.5,261 329.5,261 C349.7111,261 372.37,261.9546 390.2616,262.9312 " fill="none" id="word.direction-word.direction.right" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="395.6531,263.2339,386.8916,258.7354,390.661,262.9535,386.4429,266.7228,395.6531,263.2339" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="83" x="179" y="257.5684">RIGHT_CLICK</text><!--link word.direction to word.direction.center--><path d="M40.3956,216.5171 C44.3127,211.793 76.7358,174 111.5,174 C111.5,174 111.5,174 329.5,174 C347.9749,174 368.4714,175.1937 385.5104,176.5163 " fill="none" id="word.direction-word.direction.center" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="390.6813,176.9297,382.0288,172.225,385.6972,176.5311,381.3911,180.1996,390.6813,176.9297" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="93" x="174" y="170.5684">CENTER_CLICK</text><!--link word.direction to word.direction.justify--><path d="M40.018,216.6271 C40.4065,209.002 47.6205,87 111.5,87 C111.5,87 111.5,87 329.5,87 C348.4452,87 369.4817,88.6683 386.7485,90.4813 " fill="none" id="word.direction-word.direction.justify" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="391.9797,91.0469,383.4619,86.1025,387.0087,90.5093,382.6018,94.0561,391.9797,91.0469" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="91" x="175" y="83.5684">JUSTIFY_CLICK</text><!--
+@startuml
+left to right direction
+state "word" as word {
+  state "direction" as word.direction {
+    [*] - -> word.direction.left
+
+    word.direction - -> word.direction.left : LEFT_CLICK
+    word.direction - -> word.direction.right : RIGHT_CLICK
+    word.direction - -> word.direction.center : CENTER_CLICK
+    word.direction - -> word.direction.justify : JUSTIFY_CLICK
+    state "left" as word.direction.left {
+    }
+
+    state "right" as word.direction.right {
+    }
+
+    state "center" as word.direction.center {
+    }
+
+    state "justify" as word.direction.justify {
+    }
+  }
+}
+@enduml
+
+PlantUML version 1.2018.09(Fri Jul 27 18:58:18 CEST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_91-b14
+Operating System: Mac OS X
+OS Version: 10.13.1
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

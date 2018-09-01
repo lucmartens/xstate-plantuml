@@ -84,7 +84,14 @@ Which you can compile to the following image
 
 ![payment](./examples/payment.svg?sanitize=true)
 
-## Guards and actions
+## Internal transitions
+
+- [json](./examples/word.json)
+- [puml](./examples/word.puml)
+
+![word](./examples/word.svg?sanitize=true)
+
+## Guards, actions and activities
 
 - [json](./examples/download.json)
 - [puml](./examples/download.puml)

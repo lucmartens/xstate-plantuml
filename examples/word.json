@@ -1,0 +1,20 @@
+{
+  "key": "word",
+  "states": {
+    "direction": {
+      "initial": "left",
+      "states": {
+        "left": {},
+        "right": {},
+        "center": {},
+        "justify": {}
+      },
+      "on": {
+        "LEFT_CLICK": ".left",
+        "RIGHT_CLICK": ".right",
+        "CENTER_CLICK": ".center",
+        "JUSTIFY_CLICK": ".justify"
+      }
+    }
+  }
+}

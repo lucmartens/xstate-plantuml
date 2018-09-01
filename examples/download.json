@@ -6,7 +6,7 @@
       "on": {
         "START": {
           "downloading": {
-            "actions": "startDownload",
+            "actions": "initializeCache",
             "cond": "stableConnection"
           }
         }
@@ -16,11 +16,12 @@
       "on": {
         "PAUSE": "paused",
         "DONE": "finished"
-      }
+      },
+      "activities": "streamChunk"
     },
     "paused": {
       "on": {
-        "RESUME": { "downloading": { "actions": "resumeDownload" } },
+        "RESUME": "downloading",
         "CANCEL": "finished"
       }
     },

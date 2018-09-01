@@ -35,7 +35,7 @@ const transitionActions = actions => {
 const transitions = (stateNode, buffer) => {
   const transition = ({ event, target, cond, actions }) => {
     const from = stateNode.id;
-    const to = resolvePath(stateNode.parent, target[0]);
+    const to = resolvePath(stateNode.parent || stateNode, target[0]);
     const guards = transitionGuards(cond);
     actions = transitionActions(actions);
     buffer.appendf`${from} --> ${to} : ${event}${guards}${actions}`;
@@ -47,7 +47,7 @@ const transitions = (stateNode, buffer) => {
     buffer.newline();
   }
 
-  iterateTransitions(stateNode.parent)
+  iterateTransitions(stateNode)
     .filter(({ internal }) => internal)
     .forEach(transition);
 

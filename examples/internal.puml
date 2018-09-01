@@ -3,22 +3,16 @@ left to right direction
 state "internal" as internal {
   [*] --> internal.a
 
+  internal --> internal.a : A
+  internal --> internal.b : B
+  internal --> internal.c : C
   state "a" as internal.a {
-    internal.a --> internal.a : A
-    internal.a --> internal.b : B
-    internal.a --> internal.c : C
   }
 
   state "b" as internal.b {
-    internal.b --> internal.a : A
-    internal.b --> internal.b : B
-    internal.b --> internal.c : C
   }
 
   state "c" as internal.c {
-    internal.c --> internal.a : A
-    internal.c --> internal.b : B
-    internal.c --> internal.c : C
   }
 }
 @enduml

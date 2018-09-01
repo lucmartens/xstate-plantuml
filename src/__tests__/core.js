@@ -16,8 +16,8 @@ const example = (name, opts) => {
 describe('examples', () => {
   example('alarm');
   example('download');
-  example('download0');
   example('internal');
   example('payment');
   example('text-editor');
+  example('word');
 });
