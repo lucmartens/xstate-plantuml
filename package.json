@@ -1,6 +1,6 @@
 {
   "name": "xstate-plantuml",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Visualize a xstate or react-automata statechart as a plantuml state diagram",
   "keywords": [
     "xstate",
