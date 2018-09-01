@@ -13,24 +13,23 @@ const iterateTransitions = stateNode =>
     ? Object.entries(stateNode.on).map(([event, v]) => ({ event, ...v[0] }))
     : [];
 
-const transitionGuards = cond => {
-  if (!cond || !cond.length) {
-    return '';
+const normalizeStringArray = array => {
+  if (!array || !array.length) {
+    return [];
   }
 
-  cond = Array.isArray(cond) ? cond : [cond];
-  cond = cond.map(c => (typeof c === 'string' ? c : c.name));
-  return `\\l[${cond.join(',')}]`;
+  array = Array.isArray(array) ? array : [array];
+  return array.map(e => (typeof e === 'string' ? e : e.name));
+};
+
+const transitionGuards = cond => {
+  cond = normalizeStringArray(cond);
+  return cond.length ? `\\l[${cond.join(',')}]` : '';
 };
 
 const transitionActions = actions => {
-  if (!actions || !actions.length) {
-    return '';
-  }
-
-  actions = Array.isArray(actions) ? actions : [actions];
-  actions = actions.map(a => (typeof a === 'string' ? a : a.name));
-  return `\\l/${actions.join(',')}`;
+  actions = normalizeStringArray(actions);
+  return actions.length ? `\\l/${actions.join(',')}` : '';
 };
 
 const transitions = (stateNode, buffer) => {
@@ -55,6 +54,12 @@ const transitions = (stateNode, buffer) => {
   iterateTransitions(stateNode)
     .filter(({ internal }) => !internal)
     .forEach(transition);
+};
+
+const activities = (stateNode, buffer) => {
+  normalizeStringArray(stateNode.activities).forEach(
+    activity => buffer.appendf`${stateNode.id} : do/${activity}`
+  );
 };
 
 const internalActions = (stateNode, buffer) => {
@@ -83,6 +88,7 @@ const state = (stateNode, buffer) => {
   buffer.indent();
 
   internalActions(stateNode, buffer);
+  activities(stateNode, buffer);
   transitions(stateNode, buffer);
   states(stateNode, buffer);
 

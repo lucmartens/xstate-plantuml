@@ -1,0 +1,32 @@
+{
+  "key": "download",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "START": {
+          "downloading": {
+            "actions": "startDownload",
+            "cond": "stableConnection"
+          }
+        }
+      }
+    },
+    "downloading": {
+      "on": {
+        "PAUSE": "paused",
+        "DONE": "finished"
+      },
+      "activities": ["streamChunks"]
+    },
+    "paused": {
+      "on": {
+        "RESUME": { "downloading": { "actions": "resumeDownload" } },
+        "CANCEL": "finished"
+      }
+    },
+    "finished": {
+      "onEntry": "cleanCache"
+    }
+  }
+}
