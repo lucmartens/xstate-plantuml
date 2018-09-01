@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+state "word" as word {
+  state "direction" as word.direction {
+    [*] --> word.direction.left
+
+    word.direction --> word.direction.left : LEFT_CLICK
+    word.direction --> word.direction.right : RIGHT_CLICK
+    word.direction --> word.direction.center : CENTER_CLICK
+    word.direction --> word.direction.justify : JUSTIFY_CLICK
+    state "left" as word.direction.left {
+    }
+
+    state "right" as word.direction.right {
+    }
+
+    state "center" as word.direction.center {
+    }
+
+    state "justify" as word.direction.justify {
+    }
+  }
+}
+@enduml
