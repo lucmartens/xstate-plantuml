@@ -5,6 +5,9 @@
 
 Visualize a [xstate](https://github.com/davidkpiano/xstate) or [react-automata](https://github.com/MicheleBertoli/react-automata) statechart as a [plantuml](https://github.com/plantuml/plantuml) state diagram.
 
+#### [Try online](https://codesandbox.io/s/43yj22oy20?module=%2Fsrc%2Fmachine.json)
+
+
 ## Installation
 
 ```
