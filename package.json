@@ -1,6 +1,6 @@
 {
   "name": "xstate-plantuml",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Visualize a xstate or react-automata statechart as a plantuml state diagram",
   "keywords": [
     "xstate",
@@ -9,7 +9,7 @@
     "statecharts",
     "visualization"
   ],
-  "main": "src/index.js",
+  "main": "src/core.js",
   "license": "MIT",
   "repository": {
     "type": "git",
