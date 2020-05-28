@@ -4,9 +4,11 @@ const Buffer = require('./buffer');
 const isStateNode = machine => machine.constructor.name === 'StateNode';
 
 const resolvePath = (stateNode, path) =>
-  path[0] === '#'
-    ? stateNode.getStateNodeById(path).id
-    : stateNode.getStateNodeByPath(path).id;
+  typeof path === 'object' ? 
+    path.id : 
+    path[0] === '#'
+      ? stateNode.getStateNodeById(path).id
+      : stateNode.getStateNodeByPath(path).id;
 
 const iterateTransitions = stateNode => {
   if(!stateNode) {
