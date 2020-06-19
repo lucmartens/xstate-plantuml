@@ -25,7 +25,7 @@ const iterateTransitions = stateNode => {
 }
 
 const normalizeStringArray = array => {
-  if (!array || !array.length) {
+  if (!array) {
     return [];
   }
 
