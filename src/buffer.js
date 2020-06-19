@@ -29,7 +29,10 @@ class Buffer {
       value.replace(/[\(\)]/g, '').replace(/-/g, '_');
 
     const value = strings
-      .map((str, i) => str + sanitize(values[i]))
+      .map((str, i) => {
+        const sanitized = sanitize(values[i]);
+        return sanitized ? str + sanitized : sanitized
+      })
       .join('');
 
     this.append(value);
