@@ -30,7 +30,7 @@ const normalizeStringArray = array => {
   }
 
   array = Array.isArray(array) ? array : [array];
-  return array.map(e => (typeof e === 'string' ? e : e.name));
+  return array.map(e => (typeof e === 'string' ? e : e.name || e.type));
 };
 
 const transitionGuards = cond => {
@@ -74,12 +74,20 @@ const activities = (stateNode, buffer) => {
 };
 
 const internalActions = (stateNode, buffer) => {
-  for (const action of stateNode.onEntry) {
-    buffer.appendf`${stateNode.id} : onEntry/${action}`;
+  if (stateNode.onEntry) {
+    normalizeStringArray(stateNode.onEntry).forEach(
+      (action) => {
+        buffer.appendf`${stateNode.id} : onEntry/${action}`
+      }
+    )
   }
 
-  for (const action of stateNode.onExit) {
-    buffer.appendf`${stateNode.id} : onExit/${action}`;
+  if (stateNode.onExit) {
+    normalizeStringArray(stateNode.onExit).forEach(
+      (action) => {
+        buffer.appendf`${stateNode.id} : onExit/${action}`
+      }
+    )
   }
 };
 
