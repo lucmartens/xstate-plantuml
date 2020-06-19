@@ -1,0 +1,16 @@
+{
+  "initial": "initial",
+  "states": {
+    "initial": {
+      "on": {
+        "": {
+          "target": "final",
+          "guards": [{"type":"xstate.guard","name":"check"}]
+        }
+      }
+    },
+    "final": {
+      "final": true
+    }
+  }
+}

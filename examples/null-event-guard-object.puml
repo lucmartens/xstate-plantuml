@@ -1,0 +1,13 @@
+@startuml
+left to right direction
+state "machine" as machine {
+  [*] --> machine.initial
+
+  state "initial" as machine.initial {
+    machine.initial --> machine.final : always\l[check]
+  }
+
+  state "final" as machine.final {
+  }
+}
+@enduml

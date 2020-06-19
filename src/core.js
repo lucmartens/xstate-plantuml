@@ -14,18 +14,23 @@ const iterateTransitions = stateNode => {
   if(!stateNode) {
     return []
   } else {
-    return Object.entries(stateNode.on).reduce((acc,[event, v]) => {            
-      if(v.length == 1) {
-        return ([...acc,{ event, ...v[0] }])
+    return Object.entries(stateNode.on).reduce((acc,[event, v]) => {
+      if (event === '') {
+        // the deprecated "null event" can and should now be notated as `always`
+        // so we fix it here:
+        event = 'always'
+      }
+      if(v.length === 1) {
+        return ([...acc,{ ...v[0], event }])
       } else {
-        return ([...acc,...v.map( (it,i) => ({ event, ...v[i] }))])
+        return ([...acc,...v.map( (it,i) => ({ ...v[i], event }))])
       }
     },[])      
   }
 }
 
 const normalizeStringArray = array => {
-  if (!array || !array.length) {
+  if (!array) {
     return [];
   }
 
@@ -44,11 +49,12 @@ const transitionActions = actions => {
 };
 
 const transitions = (stateNode, buffer) => {
-  const transition = ({ event, target, cond, actions }) => {
+    // cond might come from v3, while guards come from v4 (?)
+  const transition = ({ event, target, guards: _guards, cond = _guards, actions}) => {
     const from = stateNode.id;
     // some events only trigger actions and don't cause a transition.
     const to = target ? resolvePath(stateNode.parent || stateNode, target[0]) : from;
-    const guards = transitionGuards(cond);    
+    const guards = transitionGuards(cond);
     actions = transitionActions(actions);
     if (from === to) {
       // let's omit the target in this case since it can become very verbose in the diagrams
@@ -62,7 +68,7 @@ const transitions = (stateNode, buffer) => {
     const to = resolvePath(stateNode, stateNode.initial);
     buffer.appendf`[*] --> ${to}`;
     buffer.newline();
-  }  
+  }
 
   iterateTransitions(stateNode).forEach(transition);
 };

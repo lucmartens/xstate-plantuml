@@ -47,6 +47,8 @@ describe('examples', () => {
       ...compatible,
       'actions-only',
       'actions-objects',
+      'null-event-guard-object',
+      'on-always',
       'text-editor'
     ].forEach(name => example(name, {xstate:xstate4}))
   });

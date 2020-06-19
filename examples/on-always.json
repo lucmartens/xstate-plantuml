@@ -1,0 +1,15 @@
+{
+  "initial": "initial",
+  "states": {
+    "initial": {
+      "on": {
+        "always": {
+          "target": "final"
+        }
+      }
+    },
+    "final": {
+      "final": true
+    }
+  }
+}
