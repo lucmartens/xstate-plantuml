@@ -46,10 +46,12 @@ const transitionActions = actions => {
 const transitions = (stateNode, buffer) => {
   const transition = ({ event, target, cond, actions }) => {
     const from = stateNode.id;
-    const to = resolvePath(stateNode.parent || stateNode, target[0]);
+    // some events only trigger actions and don't cause a transition.
+    // setting to to stateNode.id would also work but is very verbose in diagrams
+    const to = target ? resolvePath(stateNode.parent || stateNode, target[0]): '';
     const guards = transitionGuards(cond);    
     actions = transitionActions(actions);
-    buffer.appendf`${from} --> ${to} : ${event}${guards}${actions}`;
+    buffer.appendf`${from} --> ${to} : ${`${event}${guards}${actions}`}`;
   };
 
   if (stateNode.initial) {
