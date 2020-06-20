@@ -20,9 +20,10 @@
   },
   "devDependencies": {
     "jest": "^23.5.0",
-    "xstate": "^3.3.3"
+    "xstate3": "npm:xstate@^3.3.3",
+    "xstate": "4"
   },
   "peerDependencies": {
-    "xstate": "^3.3.3"
+    "xstate": "^3.3.3 || ^4"
   }
 }

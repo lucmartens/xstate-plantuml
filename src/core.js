@@ -119,14 +119,15 @@ const commands = (options, buffer) => {
 
 const defaultOptions = {
   leftToRight: true,
-  skinParams: []
+  skinParams: [],
+  xstate: xstate
 };
 
 const visualize = (machine, options = {}) => {
   options = { ...defaultOptions, ...options };
 
   const buffer = new Buffer();
-  const stateNode = isStateNode(machine) ? machine : xstate.Machine(machine);
+  const stateNode = isStateNode(machine) ? machine : options.xstate.Machine(machine);
 
   buffer.append('@startuml');
   commands(options, buffer);
