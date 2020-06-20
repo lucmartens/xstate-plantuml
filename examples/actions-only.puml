@@ -1,0 +1,10 @@
+@startuml
+left to right direction
+state "machine" as machine {
+  [*] --> machine.initial
+
+  state "initial" as machine.initial {
+    machine.initial : LOG\l/log
+  }
+}
+@enduml

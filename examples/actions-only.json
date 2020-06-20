@@ -1,0 +1,12 @@
+{
+  "initial": "initial",
+  "states": {
+    "initial": {
+      "on": {
+        "LOG": {
+          "actions": ["log"]
+        }
+      }
+    }
+  }
+}

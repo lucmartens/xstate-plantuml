@@ -1,6 +1,6 @@
 {
   "key": "textEditor",
-  "type": "parallel",
+  "parallel": true,
   "states": {
     "bold": {
       "initial": "off",
