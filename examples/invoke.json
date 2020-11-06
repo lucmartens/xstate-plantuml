@@ -1,0 +1,24 @@
+{
+  "key": "download",
+  "initial": "idle",
+  "states": {
+    "idle": {
+      "on": {
+        "FETCH": "loading"
+      }
+    },
+    "loading": {
+      "invoke": {
+        "src": "service",
+        "onDone": "done",
+        "onError": "error"
+      }
+    },
+    "done": {
+      "type": "final"
+    },
+    "error": {
+      "type": "final"
+    }
+  }
+}

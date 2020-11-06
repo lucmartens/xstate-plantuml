@@ -47,6 +47,7 @@ describe('examples', () => {
       ...compatible,
       'actions-only',
       'actions-objects',
+      'invoke',
       'null-event-guard-object',
       'on-always',
       'text-editor'

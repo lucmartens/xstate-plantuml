@@ -29,14 +29,16 @@ const iterateTransitions = stateNode => {
   }
 }
 
-const normalizeStringArray = array => {
+const normalizeArray = array => {
   if (!array) {
     return [];
   }
-
-  array = Array.isArray(array) ? array : [array];
-  return array.map(e => (typeof e === 'string' ? e : e.name || e.type));
+  return Array.isArray(array) ? array : [array];
 };
+
+const normalizeStringArray = array =>
+  normalizeArray(array).map(e => (typeof e === 'string' ? e : e.name || e.type));
+
 
 const transitionGuards = cond => {
   cond = normalizeStringArray(cond);
@@ -74,9 +76,21 @@ const transitions = (stateNode, buffer) => {
 };
 
 const activities = (stateNode, buffer) => {
-  normalizeStringArray(stateNode.activities).forEach(
-    activity => buffer.appendf`${stateNode.id} : do/${activity}`
-  );
+  normalizeArray(stateNode.activities).forEach(
+    activity => {
+      if (typeof activity === 'object' && activity.type) {
+        switch (activity.type) {
+          case 'xstate.invoke':
+            buffer.appendf`${stateNode.id} : invoke/${activity.id}`;
+            break;
+          default:
+            buffer.appendf`${stateNode.id} : do/type:${activity.type}`;
+        }
+      } else {
+        buffer.appendf`${stateNode.id} : do/${activity}`;
+      }
+    }
+  )
 };
 
 const internalActions = (stateNode, buffer) => {

@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+state "download" as download {
+  [*] --> download.idle
+
+  state "idle" as download.idle {
+    download.idle --> download.loading : FETCH
+  }
+
+  state "loading" as download.loading {
+    download.loading : invoke/service
+    download.loading --> download.done : done.invoke.service
+    download.loading --> download.error : error.platform.service
+  }
+
+  state "done" as download.done {
+  }
+
+  state "error" as download.error {
+  }
+}
+@enduml
