@@ -1,25 +1,34 @@
 # xstate-plantuml
 
-[![npm](https://img.shields.io/npm/v/xstate-plantuml.svg?style=flat-square)](https://www.npmjs.com/package/xstate-plantuml)
-[![Travis](https://img.shields.io/travis/lucmartens/xstate-plantuml.svg?style=flat-square)](https://travis-ci.org/lucmartens/xstate-plantuml/)
-
 Visualize a [xstate](https://github.com/davidkpiano/xstate) or [react-automata](https://github.com/MicheleBertoli/react-automata) statechart as a [plantuml](https://github.com/plantuml/plantuml) state diagram.
+
+This fork was created to add improved support for xstate@v4 and is currently installable by adding the following to package.json:
+```json
+  "@karfau/xstate-plantuml": "github:karfau/xstate-plantuml#{TAG OR HASH}"
+```
 
 #### [Try online](https://codesandbox.io/s/43yj22oy20?module=%2Fsrc%2Fmachine.json)
 
 
 ## Installation
 
+```json
+  "@karfau/xstate-plantuml": "github:karfau/xstate-plantuml#{TAG OR HASH}"
 ```
-npm install xstate-plantuml
+([xstate](https://github.com/davidkpiano/xstate) is a peer dependency, if you don't have it insalled you need to run `npm install xstate`)
+
+<!--
 ```
+npm install @karfau/xstate-plantuml
+```
+-->
 
 ## Usage
 
-import `xstate-plantuml` and call it's default export using a xstate config or machine
+import `@karfau/xstate-plantuml` and call it's default export using a xstate config or machine
 
 ```js
-import visualize from 'xstate-plantuml';
+import visualize from '@karfau/xstate-plantuml';
 
 const config = {
   key: 'light',
@@ -72,6 +81,7 @@ In addition to a state machine, `visualize` accepts an options map
 | ----------- | ------- | ----------------------------------------------------------------- |
 | leftToRight | true    | whether to render left to right or top to bottom                  |
 | skinParams  | []      | Additional [skinparams](http://plantuml.com/skinparam) to include |
+| xstate      | xstate (resolved module with that name) | to pass alternative implementaitons ([e.g. for testing](https://github.com/karfau/xstate-plantuml/blob/develop/src/__tests__/core.js)) |
 
 Our previous example with different options
 
@@ -106,6 +116,8 @@ compiles to
 
 ## Examples
 
+Not all examples are listed here, please check [examples](https://github.com/karfau/xstate-plantuml/tree/develop/examples) for more
+
 ### Hierarchical state
 
 - [json](./examples/alarm.json)
@@ -136,7 +148,14 @@ compiles to
 
 ### Guards, actions and activities
 
+#### xstate@v3:
 - [json](./examples/download.json)
 - [puml](./examples/download.puml)
 
 ![download](./examples/download.svg?sanitize=true)
+
+#### xstate@v4:
+- [json](./examples/invoke.json)
+- [puml](./examples/invoke.puml)
+
+![download](./examples/invoke.svg?sanitize=true)
