@@ -1,0 +1,14 @@
+@startuml
+left to right direction
+state "machine" as machine {
+  [*] --> machine.initial
+
+  state "initial" as machine.initial {
+    machine.initial --> machine.final : T\l/myAction
+  }
+
+  state "final" as machine.final {
+    machine.final : onEntry/finalAction
+  }
+}
+@enduml

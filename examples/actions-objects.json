@@ -1,0 +1,17 @@
+{
+  "initial": "initial",
+  "states": {
+    "initial": {
+      "on": {
+        "T": {
+          "target": "final",
+          "actions": [{ "type": "myAction" }]
+        }
+      }
+    },
+    "final": {
+      "entry": [{ "type": "finalAction" }],
+      "final": true
+    }
+  }
+}
