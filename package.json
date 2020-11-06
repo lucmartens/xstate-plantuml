@@ -19,7 +19,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "jest": "23.6.0",
+    "jest": "26.6.3",
     "xstate3": "npm:xstate@3.3.3",
     "xstate": "4.14.0"
   },
