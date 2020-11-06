@@ -19,9 +19,9 @@
     "test": "jest"
   },
   "devDependencies": {
-    "jest": "^23.5.0",
+    "jest": "23.6.0",
     "xstate3": "npm:xstate@3.3.3",
-    "xstate": "4"
+    "xstate": "4.14.0"
   },
   "peerDependencies": {
     "xstate": "^3.3.3 || ^4"
