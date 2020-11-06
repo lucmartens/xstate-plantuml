@@ -1,6 +1,6 @@
 {
-  "name": "xstate-plantuml",
-  "version": "0.5.0",
+  "name": "@karfau/xstate-plantuml",
+  "version": "0.6.0-dev",
   "description": "Visualize a xstate or react-automata statechart as a plantuml state diagram",
   "keywords": [
     "xstate",
@@ -13,10 +13,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lucmartens/xstate-plantuml.git"
+    "url": "https://github.com/karfau/xstate-plantuml.git"
   },
   "scripts": {
-    "test": "yarn jest"
+    "test": "jest"
   },
   "devDependencies": {
     "jest": "^23.5.0",
