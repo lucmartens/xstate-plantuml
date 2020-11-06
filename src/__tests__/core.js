@@ -15,11 +15,17 @@ const example = (name, opts) => {
   if (/-v3$/.test(name) && !fs.existsSync(pumlPath)) {
     pumlPath = pumlPath.replace(/-v3.puml/, '.puml');
   }
-  const puml = fs.readFileSync(pumlPath, 'utf8');
 
   test(name, () => {
+    const puml = fs.readFileSync(pumlPath, 'utf8');
     expect(visualize(json, opts)).toEqual(puml);
   });
+
+  if (!fs.existsSync(pumlPath)) {
+    //TODO: only in watch mode?
+    fs.writeFileSync(pumlPath, visualize(json, opts), 'utf-8')
+    console.warn("Created missing file", pumlPath)
+  }
 };
 const compatible = [
   'alarm',
@@ -40,6 +46,7 @@ describe('examples', () => {
     [
       ...compatible,
       'actions-only',
+      'actions-objects',
       'text-editor'
     ].forEach(name => example(name, {xstate:xstate4}))
   });
