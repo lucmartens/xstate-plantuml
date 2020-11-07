@@ -1,6 +1,23 @@
 const xstate = require('xstate');
 const Buffer = require('./buffer');
 
+/** @typedef {import('xstate').StateNode} StateNode */
+/** @typedef {import('xstate').StateNodesConfig<any, any, any>} StateNodesConfig */
+/** @typedef {import('xstate').StateSchema} StateSchema */
+
+/**
+ * @typedef {object} VisualizeOptions
+ * @property {boolean} [leftToRight=true]
+ * @property {string[]} [skinParams=[]]
+ * @property {*} [xstate]
+ */
+
+/**
+ * Type guard to check for StateNode
+ *
+ * @param machine {StateNode | object}
+ * @returns {boolean} whether machine is StateNode
+ */
 const isStateNode = machine => machine.constructor.name === 'StateNode';
 
 const resolvePath = (stateNode, path) =>
@@ -10,22 +27,35 @@ const resolvePath = (stateNode, path) =>
       ? stateNode.getStateNodeById(path).id
       : stateNode.getStateNodeByPath(path).id;
 
+/**
+ *
+ * @param acc {StateSchema[]}
+ * @param current {[string, StateSchema[]]}
+ * @returns {StateSchema[]}
+ */
+const reduceTransition = (acc, [event, v]) => {
+    if (event === '') {
+      // the deprecated "null event" can and should now be notated as `always`
+      // so we fix it here:
+      event = 'always'
+    }
+    if (v.length === 1) {
+      return /** @type {StateSchema[]} */([...acc, {...v[0], event}])
+    } else {
+      return /** @type {StateSchema[]} */([...acc, ...v.map((it, i) => ({...v[i], event }))])
+    }
+  }
+
+/**
+ *
+ * @param stateNode {StateNodesConfig}
+ * @returns {StateSchema[]}
+ */
 const iterateTransitions = stateNode => {
   if(!stateNode) {
     return []
   } else {
-    return Object.entries(stateNode.on).reduce((acc,[event, v]) => {
-      if (event === '') {
-        // the deprecated "null event" can and should now be notated as `always`
-        // so we fix it here:
-        event = 'always'
-      }
-      if(v.length === 1) {
-        return ([...acc,{ ...v[0], event }])
-      } else {
-        return ([...acc,...v.map( (it,i) => ({ ...v[i], event }))])
-      }
-    },[])      
+    return Object.entries(stateNode.on).reduce(reduceTransition, [])
   }
 }
 
@@ -50,8 +80,15 @@ const transitionActions = actions => {
   return actions.length ? `\\l/${actions.join(',')}` : '';
 };
 
+/**
+ * @param stateNode {StateNodesConfig}
+ * @param buffer {Buffer}
+ */
 const transitions = (stateNode, buffer) => {
-    // cond might come from v3, while guards come from v4 (?)
+  /**
+   * `cond` might come from xstate@v3, while `guards` come from v4
+   * @param transition {StateSchema | *}
+   */
   const transition = ({ event, target, guards: _guards, cond = _guards, actions}) => {
     const from = stateNode.id;
     // some events only trigger actions and don't cause a transition.
@@ -60,15 +97,19 @@ const transitions = (stateNode, buffer) => {
     actions = transitionActions(actions);
     if (from === to) {
       // let's omit the target in this case since it can become very verbose in the diagrams
+      // @ts-ignore TS2339: Property 'appendf' does not exist on type 'Buffer'.
       buffer.appendf`${from} : ${event}${guards}${actions}`;
     } else {
+      // @ts-ignore TS2339: Property 'appendf' does not exist on type 'Buffer'.
       buffer.appendf`${from} --> ${to} : ${event}${guards}${actions}`;
     }
   };
 
   if (stateNode.initial) {
     const to = resolvePath(stateNode, stateNode.initial);
+    // @ts-ignore TS2339: Property 'appendf' does not exist on type 'Buffer'.
     buffer.appendf`[*] --> ${to}`;
+    // @ts-ignore TS2339: Property 'newline' does not exist on type 'Buffer'.
     buffer.newline();
   }
 
@@ -112,7 +153,7 @@ const internalActions = (stateNode, buffer) => {
 };
 
 const states = (stateNode, buffer) => {
-  const values = Object.values(stateNode.states);
+  const values = /** @type {StateNode[]} */(Object.values(stateNode.states));
   for (const [index, child] of values.entries()) {
     state(child, buffer);
 
@@ -145,12 +186,23 @@ const commands = (options, buffer) => {
   }
 };
 
+/**
+ *
+ * @type {VisualizeOptions}
+ */
 const defaultOptions = {
   leftToRight: true,
   skinParams: [],
   xstate: xstate
 };
 
+/**
+ * Returns the plantuml syntax for the state machine.
+ *
+ * @param machine {*}
+ * @param options {VisualizeOptions}
+ * @returns {string}
+ */
 const visualize = (machine, options = {}) => {
   options = { ...defaultOptions, ...options };
 
