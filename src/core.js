@@ -1,6 +1,7 @@
-const xstate = require('xstate');
 const Buffer = require('./buffer');
 
+/** @typedef {import('xstate').MachineConfig} MachineConfig */
+/** @typedef {import('xstate').StateMachine} StateMachine */
 /** @typedef {import('xstate').StateNode} StateNode */
 /** @typedef {import('xstate').StateNodesConfig<any, any, any>} StateNodesConfig */
 /** @typedef {import('xstate').StateSchema} StateSchema */
@@ -187,19 +188,21 @@ const commands = (options, buffer) => {
 };
 
 /**
- *
  * @type {VisualizeOptions}
  */
 const defaultOptions = {
   leftToRight: true,
   skinParams: [],
-  xstate: xstate
 };
 
 /**
  * Returns the plantuml syntax for the state machine.
  *
- * @param machine {*}
+ * @param machine {MachineConfig | StateMachine | StateNode}
+ * Either the return value of `xstate.Machine` function or it's first argument.
+ * In the second case, `options.xstate` or, if not set `require('xstate')`,
+ * is used to create the StateMachine (extends StateNode) instance.
+ *
  * @param options {VisualizeOptions}
  * @returns {string}
  */
@@ -207,7 +210,9 @@ const visualize = (machine, options = {}) => {
   options = { ...defaultOptions, ...options };
 
   const buffer = new Buffer();
-  const stateNode = isStateNode(machine) ? machine : options.xstate.Machine(machine);
+  const stateNode = isStateNode(machine)
+    ? machine
+    : (options.xstate || require('xstate')).Machine(machine);
 
   buffer.append('@startuml');
   commands(options, buffer);
