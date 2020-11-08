@@ -10,7 +10,7 @@
     "visualization"
   ],
   "main": "src/core.js",
-  "types": "index.d.ts",
+  "types": "src/core.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   },
   "scripts": {
     "test": "jest",
-    "types": "rm -f index.d.ts && tsc --emitDeclarationOnly && git add index.d.ts"
+    "types": "rm -f src/*.d.ts && tsc --emitDeclarationOnly && git add src/*.d.ts"
   },
   "devDependencies": {
     "@types/jest": "^26.0.15",
