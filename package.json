@@ -22,10 +22,10 @@
     "types": "rm -f src/*.d.ts && tsc --project tsconfig.types.json && git add src/*.d.ts"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.15",
-    "@types/node": "^14.14.6",
+    "@types/jest": "26.0.15",
+    "@types/node": "14.14.6",
     "jest": "26.6.3",
-    "typescript": "^4.0.5",
+    "typescript": "4.0.5",
     "xstate": "4.14.0",
     "xstate3": "npm:xstate@3.3.3"
   },
