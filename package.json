@@ -19,7 +19,8 @@
   "scripts": {
     "test": "jest",
     "tsc": "tsc",
-    "types": "rm -f src/*.d.ts && tsc --project tsconfig.types.json && git add src/*.d.ts"
+    "types": "rm -f src/*.d.ts && tsc --project tsconfig.types.json && git add src/*.d.ts",
+    "plantuml": "docker-compose"
   },
   "devDependencies": {
     "@types/jest": "26.0.15",

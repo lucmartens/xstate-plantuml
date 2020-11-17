@@ -1,0 +1,8 @@
+version: '2'
+services:
+  plantuml:
+    image: karfau/plantuml
+    container_name: plantuml
+    volumes:
+      - ./examples/:/examples/
+    command: -tsvg -nometadata /examples
