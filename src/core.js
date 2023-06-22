@@ -61,6 +61,14 @@ const transitions = (stateNode, buffer) => {
   iterateTransitions(stateNode).forEach(transition);
 };
 
+const finalTransitions = (stateNode, buffer) => {
+  if(!Object.keys(stateNode.on).length && !stateNode.initial) {
+    const from = stateNode.id;
+    buffer.appendf`${from} --> [*]`;
+    buffer.newline();
+  }
+};
+
 const activities = (stateNode, buffer) => {
   normalizeStringArray(stateNode.activities).forEach(
     activity => buffer.appendf`${stateNode.id} : do/${activity}`
@@ -99,6 +107,8 @@ const state = (stateNode, buffer) => {
 
   buffer.dedent();
   buffer.append(`}`);
+
+  finalTransitions(stateNode, buffer);
 };
 
 const commands = (options, buffer) => {
